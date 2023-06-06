@@ -1,6 +1,6 @@
 # For development use
 
-version: '3'
+version: "3"
 services:
   backend:
     image: electricmagnetic/kakadatabase_backend
@@ -9,7 +9,7 @@ services:
     working_dir: /app
     command: ["python3", "src/manage.py", "runserver", "0.0.0.0:8000"]
     environment:
-      - 'DATABASE_URL=postgres://postgres:kakadatabase@database:5432/kakadatabase'
+      - "DATABASE_URL=postgres://postgres:kakadatabase@database:5432/kakadatabase"
     volumes:
       - .:/app
     ports:
