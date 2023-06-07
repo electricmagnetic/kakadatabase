@@ -1,0 +1,40 @@
+name: orokonui
+
+defaults:
+  run:
+    working-directory: orokonui
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "orokonui/**"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+          run_install: |
+            - cwd: orokonui
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+          cache-dependency-path: orokonui/pnpm-lock.yaml
+      - run: pnpm install
+      - run: pnpm dlx prettier@latest --check src/ public/
+      - run: pnpm run build
+      - run: pnpm test
