@@ -1,7 +1,7 @@
-import * as moo from 'moo';
+import * as moo from "moo";
 
 let symbolBandiser = moo.compile({
-  symbol: { match: /\S+\son\s/, value: value => value.match(/\S+/)[0] },
+  symbol: { match: /\S+\son\s/, value: (value) => value.match(/\S+/)[0] },
   symbolColour: /^[a-zA-Z]+/,
   bandColour: /[a-zA-Z]+$/,
   WS: /[ \t]+/,
@@ -10,7 +10,7 @@ let symbolBandiser = moo.compile({
 
 let idBandiser = moo.compile({
   bandColour: /^[a-zA-Z]+/,
-  inscription: { match: /\(\S+\)/, value: value => value.match(/[^()]+/)[0] },
+  inscription: { match: /\(\S+\)/, value: (value) => value.match(/[^()]+/)[0] },
   error: moo.error,
 });
 
@@ -30,19 +30,19 @@ let tokeniser = moo.compile({
 /**
  Tokenise the string using `moo` as per the rules defined above, then further process certain types further.
  */
-const tokenise = nzbbtef => {
+const tokenise = (nzbbtef) => {
   tokeniser.reset(nzbbtef);
 
-  const allTokens = Array.from(tokeniser).map(token => {
+  const allTokens = Array.from(tokeniser).map((token) => {
     // If nested token, initialise tokeniser
     switch (token.type) {
-      case 'symbolBand':
+      case "symbolBand":
         symbolBandiser.reset(token.value);
         break;
-      case 'uncolouredIdBand':
+      case "uncolouredIdBand":
         idBandiser.reset(`M${token.value}`); // Assume metal band
         break;
-      case 'colouredIdBand':
+      case "colouredIdBand":
         idBandiser.reset(token.value);
         break;
       default:
@@ -51,19 +51,19 @@ const tokenise = nzbbtef => {
 
     // Depending on type, use tokeniser (as initialised) or otherwise just return the token as is
     switch (token.type) {
-      case 'symbolBand':
+      case "symbolBand":
         return Object.assign(
           {},
           token,
-          { type: 'tokenisedSymbolBand' },
+          { type: "tokenisedSymbolBand" },
           { tokens: Array.from(symbolBandiser) }
         );
-      case 'uncolouredIdBand':
-      case 'colouredIdBand':
+      case "uncolouredIdBand":
+      case "colouredIdBand":
         return Object.assign(
           {},
           token,
-          { type: 'tokenisedIdBand' },
+          { type: "tokenisedIdBand" },
           { tokens: Array.from(idBandiser) }
         );
       default:
@@ -72,7 +72,7 @@ const tokenise = nzbbtef => {
   });
 
   // Remove whitespace tokens as they are not helpful after tokenisation
-  return allTokens.filter(token => token.type !== 'WS');
+  return allTokens.filter((token) => token.type !== "WS");
 };
 
 export default tokenise;

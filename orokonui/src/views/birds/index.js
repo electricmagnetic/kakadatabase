@@ -1,10 +1,10 @@
-import React from 'react';
-import Helmet from 'react-helmet';
+import React from "react";
+import Helmet from "react-helmet";
 
-import Birds from '../../components/birds/Birds';
-import Banner from '../../components/presentation/Banner';
+import Birds from "../../components/birds/Birds";
+import Banner from "../../components/presentation/Banner";
 
-const BirdsPage = props => {
+const BirdsPage = (props) => {
   return (
     <div className="BirdsPage">
       <Helmet title="Birds" />

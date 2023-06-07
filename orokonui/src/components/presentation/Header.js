@@ -1,20 +1,25 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
-import logo from '../../assets/img/logo.svg';
-import './Header.scss';
+import logo from "../../assets/img/logo.svg";
+import "./Header.scss";
 
 /**
   Main header. Different CSS/functionality behaviour can be toggled by prop `onHome`.
   */
 const Header = ({ onHome }) => {
-  const headerClassNames = ['header', onHome ? 'on-home' : 'not-home'];
+  const headerClassNames = ["header", onHome ? "on-home" : "not-home"];
 
-  const navClassNames = ['navbar', 'navbar-expand-lg', 'navbar-dark', onHome ? '' : 'bg-secondary'];
+  const navClassNames = [
+    "navbar",
+    "navbar-expand-lg",
+    "navbar-dark",
+    onHome ? "" : "bg-secondary",
+  ];
 
   return (
-    <header className={headerClassNames.join(' ')}>
-      <nav className={navClassNames.join(' ')}>
+    <header className={headerClassNames.join(" ")}>
+      <nav className={navClassNames.join(" ")}>
         <div className="container">
           <Link to="/" className="navbar-brand">
             <img src={logo} alt="Orokonui Kākā Database" className="pr-3" />
@@ -61,7 +66,11 @@ const Header = ({ onHome }) => {
                     <i className="fa-fw fas fa-paw mr-2" />
                     Threats to Kākā
                   </NavLink>
-                  <NavLink exact to="/learn/protecting" className="dropdown-item">
+                  <NavLink
+                    exact
+                    to="/learn/protecting"
+                    className="dropdown-item"
+                  >
                     <i className="fa-fw fas fa-shield-alt mr-2" />
                     Protecting Kākā
                   </NavLink>

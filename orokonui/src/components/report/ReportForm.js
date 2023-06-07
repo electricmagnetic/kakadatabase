@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-refetch';
-import qs from 'qs';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-refetch";
+import qs from "qs";
+import PropTypes from "prop-types";
 
-import Loader from '../helpers/Loader';
-import Error from '../helpers/Error';
+import Loader from "../helpers/Loader";
+import Error from "../helpers/Error";
 
-import { qsOptions } from './schema/observationParameters';
-import { initialValidationSchema } from './schema/validationSchemas';
-import InitialDetailsForm from './initialDetails/InitialDetailsForm';
-import FinalDetailsForm from './finalDetails/FinalDetailsForm';
+import { qsOptions } from "./schema/observationParameters";
+import { initialValidationSchema } from "./schema/validationSchemas";
+import InitialDetailsForm from "./initialDetails/InitialDetailsForm";
+import FinalDetailsForm from "./finalDetails/FinalDetailsForm";
 
-import './ReportForm.scss';
+import "./ReportForm.scss";
 
 const API_URL = `${process.env.REACT_APP_API_BASE}/report/`;
 
@@ -46,7 +46,8 @@ class ReportForm extends Component {
 
   componentDidUpdate(prevProps) {
     // If location changes, update state accordingly
-    if (this.props.location !== prevProps.location) this.updateStateFromQueryString();
+    if (this.props.location !== prevProps.location)
+      this.updateStateFromQueryString();
   }
 
   render() {
@@ -62,7 +63,8 @@ class ReportForm extends Component {
       return (
         <div className="container mb-5">
           <Error message="Error">
-            {submissionOptions.reason.cause && `(${submissionOptions.reason.cause.detail})`}
+            {submissionOptions.reason.cause &&
+              `(${submissionOptions.reason.cause.detail})`}
           </Error>
         </div>
       );
@@ -72,7 +74,10 @@ class ReportForm extends Component {
       return (
         <div className="ReportForm">
           {initialValidationSchema.isValidSync(this.state.queryString) ? (
-            <FinalDetailsForm queryString={this.state.queryString} fieldOptions={fieldOptions} />
+            <FinalDetailsForm
+              queryString={this.state.queryString}
+              fieldOptions={fieldOptions}
+            />
           ) : (
             <InitialDetailsForm fieldOptions={fieldOptions} />
           )}
@@ -83,14 +88,14 @@ class ReportForm extends Component {
 }
 
 ReportForm.propTypes = {
-  'location.search': PropTypes.string,
+  "location.search": PropTypes.string,
 };
 
 export default withRouter(
-  connect(props => ({
+  connect((props) => ({
     submissionOptions: {
       url: API_URL,
-      method: 'OPTIONS',
+      method: "OPTIONS",
     },
   }))(ReportForm)
 );

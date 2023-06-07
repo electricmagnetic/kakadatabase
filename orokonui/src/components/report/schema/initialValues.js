@@ -1,14 +1,14 @@
-import moment from 'moment';
+import moment from "moment";
 
 /**
   Specifies initial values for a Contributor.
   See also: contributorValidationSchema
   */
 export const initialContributorValues = {
-  name: '',
-  email: '',
-  activity: '',
-  heard: '',
+  name: "",
+  email: "",
+  activity: "",
+  heard: "",
 };
 
 /**
@@ -16,10 +16,10 @@ export const initialContributorValues = {
   See also: birdObservationValidationSchema
   */
 export const initialBirdObservationValues = {
-  banded: '',
-  band_combo: '',
-  sex_guess: '',
-  life_stage_guess: '',
+  banded: "",
+  band_combo: "",
+  sex_guess: "",
+  life_stage_guess: "",
 };
 
 /**
@@ -29,25 +29,25 @@ export const initialBirdObservationValues = {
 export const initialFullValues = {
   contributor: initialContributorValues,
   birds: [],
-  comments: '',
+  comments: "",
   point_location: {
-    type: 'Point',
+    type: "Point",
     coordinates: [],
   },
-  behaviour: '',
-  challenge: 'kaka',
+  behaviour: "",
+  challenge: "kaka",
 };
 
 /**
   xxxxx
   */
 export const initialInitialValues = {
-  date_sighted: moment().format('YYYY-MM-DD'),
-  time_sighted: moment('12:00', 'H:mm').format('H:mm'),
-  observation_type: 'sighted',
+  date_sighted: moment().format("YYYY-MM-DD"),
+  time_sighted: moment("12:00", "H:mm").format("H:mm"),
+  observation_type: "sighted",
   number: 1,
-  location_details: '',
-  longitude: '',
-  latitude: '',
-  precision: '250',
+  location_details: "",
+  longitude: "",
+  latitude: "",
+  precision: "250",
 };

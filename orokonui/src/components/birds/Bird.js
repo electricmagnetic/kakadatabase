@@ -1,13 +1,13 @@
-import React from 'react';
-import useSWR from 'swr';
-import PropTypes from 'prop-types';
+import React from "react";
+import useSWR from "swr";
+import PropTypes from "prop-types";
 
-import BirdPage from './Bird/BirdPage';
-import BirdCard from './Bird/BirdCard';
-import BirdFeature from './Bird/BirdFeature';
+import BirdPage from "./Bird/BirdPage";
+import BirdCard from "./Bird/BirdCard";
+import BirdFeature from "./Bird/BirdFeature";
 
-import Loader from '../helpers/Loader';
-import Error from '../helpers/Error';
+import Loader from "../helpers/Loader";
+import Error from "../helpers/Error";
 
 const API_URL = `${process.env.REACT_APP_API_BASE}/birds/`;
 
@@ -18,9 +18,9 @@ const RenderBird = ({ bird, type, ...others }) => {
   if (!bird) return <Error message="Invalid bird" />;
 
   switch (type) {
-    case 'feature':
+    case "feature":
       return <BirdFeature bird={bird} {...others} />;
-    case 'card':
+    case "card":
       return <BirdCard bird={bird} {...others} />;
     default:
       return <BirdPage bird={bird} {...others} />;
@@ -33,7 +33,9 @@ const RenderBird = ({ bird, type, ...others }) => {
   - Fetches a bird using the given id and renders as a specified type
   */
 const Bird = ({ id, bird, ...others }) => {
-  const { data, error, isValidating } = useSWR(!bird ? `${API_URL}${id}/` : null);
+  const { data, error, isValidating } = useSWR(
+    !bird ? `${API_URL}${id}/` : null
+  );
 
   if (bird) {
     return <RenderBird bird={bird} {...others} />;
@@ -53,7 +55,7 @@ Bird.propTypes = {
 };
 
 Bird.defaultProps = {
-  type: 'page',
+  type: "page",
 };
 
 export default Bird;

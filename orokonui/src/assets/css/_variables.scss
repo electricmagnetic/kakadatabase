@@ -1,5 +1,5 @@
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/mixins';
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
 
 $orange-bright: #cc8100;
 $red-dark: #651a1a;
@@ -13,10 +13,10 @@ $light: #e9ecef;
 $white: #fff;
 $black: #000;
 
-$font-family-sans-serif: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-  'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-  'Segoe UI Symbol', 'Noto Color Emoji';
-$headings-font-family: 'Sarabun', serif;
+$font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$headings-font-family: "Sarabun", serif;
 $headings-font-weight: 700;
 
 $navbar-dark-color: rgba($white, 0.75);
@@ -27,4 +27,4 @@ $navbar-light-hover-color: rgba($black, 0.6);
 
 $navbar-nav-link-padding-x: 1rem;
 
-@import 'bootstrap/scss/_variables';
+@import "bootstrap/scss/_variables";

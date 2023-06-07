@@ -1,4 +1,4 @@
-import { longColours, longCombinedColours } from './colours/transforms';
+import { longColours, longCombinedColours } from "./colours/transforms";
 
 /**
  This function iterates over the colour object given, doing a (word bounded) find/replace.
@@ -8,10 +8,14 @@ import { longColours, longCombinedColours } from './colours/transforms';
 const transform = (nzbbtef, colours) =>
   Object.keys(colours).reduce(
     (nzbbtef, currentSearch) =>
-      nzbbtef.replace(new RegExp(`\\b${currentSearch}\\b`, 'gi'), colours[currentSearch]),
+      nzbbtef.replace(
+        new RegExp(`\\b${currentSearch}\\b`, "gi"),
+        colours[currentSearch]
+      ),
     nzbbtef
   );
 
-const colourTransform = nzbbtef => transform(transform(nzbbtef, longColours), longCombinedColours);
+const colourTransform = (nzbbtef) =>
+  transform(transform(nzbbtef, longColours), longCombinedColours);
 
 export default colourTransform;

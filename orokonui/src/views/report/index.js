@@ -1,8 +1,8 @@
-import React from 'react';
-import Helmet from 'react-helmet';
+import React from "react";
+import Helmet from "react-helmet";
 
-import ReportForm from '../../components/report/ReportForm';
-import Banner from '../../components/presentation/Banner';
+import ReportForm from "../../components/report/ReportForm";
+import Banner from "../../components/presentation/Banner";
 
 const ReportPage = () => {
   return (

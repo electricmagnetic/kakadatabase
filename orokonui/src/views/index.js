@@ -1,13 +1,13 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Helmet from "react-helmet";
+import { Link } from "react-router-dom";
 
-import Banner from '../components/presentation/Banner';
-import Page from '../components/presentation/Page';
-import BirdObservations from '../components/observations/BirdObservations';
-import Birds from '../components/birds/Birds';
+import Banner from "../components/presentation/Banner";
+import Page from "../components/presentation/Page";
+import BirdObservations from "../components/observations/BirdObservations";
+import Birds from "../components/birds/Birds";
 
-import banner from '../assets/img/banner.jpg';
+import banner from "../assets/img/banner.jpg";
 
 const HomePage = () => {
   return (

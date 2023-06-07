@@ -1,8 +1,8 @@
-import React from 'react';
-import { Field } from 'formik';
+import React from "react";
+import { Field } from "formik";
 
-import MapSelector from '../../helpers/MapSelector';
-import RenderField from '../../helpers/RenderField';
+import MapSelector from "../../helpers/MapSelector";
+import RenderField from "../../helpers/RenderField";
 
 /**
   Fieldset for location details.
@@ -13,10 +13,20 @@ const LocationFieldset = ({ fieldOptions, ...others }) => (
     <MapSelector {...others} />
     <div className="row">
       <div className="col-6 col-sm-4">
-        <Field component={RenderField} name="longitude" type="text" label="Longitude" />
+        <Field
+          component={RenderField}
+          name="longitude"
+          type="text"
+          label="Longitude"
+        />
       </div>
       <div className="col-6 col-sm-4">
-        <Field component={RenderField} name="latitude" type="text" label="Latitude" />
+        <Field
+          component={RenderField}
+          name="latitude"
+          type="text"
+          label="Latitude"
+        />
       </div>
       <div className="col-sm-4">
         <Field

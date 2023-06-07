@@ -1,8 +1,12 @@
-import colourLibrary from './colours/library';
+import colourLibrary from "./colours/library";
 
-const getColours = tokens => {
-  return tokens.map(token => {
-    const isColourToken = ['symbolColour', 'bandColour', 'colouredBand'].includes(token.type);
+const getColours = (tokens) => {
+  return tokens.map((token) => {
+    const isColourToken = [
+      "symbolColour",
+      "bandColour",
+      "colouredBand",
+    ].includes(token.type);
 
     return Object.assign(
       {},

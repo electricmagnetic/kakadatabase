@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import Helmet from 'react-helmet';
-import { Form, withFormik } from 'formik';
-import qs from 'qs';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Helmet from "react-helmet";
+import { Form, withFormik } from "formik";
+import qs from "qs";
+import PropTypes from "prop-types";
 
-import Messages from '../helpers/Messages';
-import DetailsFieldset from './fieldsets/DetailsFieldset';
-import LocationFieldset from './fieldsets/LocationFieldset';
-import SubmitFieldset from './fieldsets/SubmitFieldset';
+import Messages from "../helpers/Messages";
+import DetailsFieldset from "./fieldsets/DetailsFieldset";
+import LocationFieldset from "./fieldsets/LocationFieldset";
+import SubmitFieldset from "./fieldsets/SubmitFieldset";
 
-import { qsOptions } from '../schema/observationParameters';
-import { initialInitialValues } from '../schema/initialValues';
-import { initialValidationSchema } from '../schema/validationSchemas';
+import { qsOptions } from "../schema/observationParameters";
+import { initialInitialValues } from "../schema/initialValues";
+import { initialValidationSchema } from "../schema/validationSchemas";
 
 /**
   Enables user to specify the conditions of thier observation.
@@ -39,7 +39,7 @@ class InitialDetailsFormComponent extends Component {
 }
 
 const InitialDetailsForm = withFormik({
-  mapPropsToValues: props => initialInitialValues,
+  mapPropsToValues: (props) => initialInitialValues,
   validationSchema: initialValidationSchema,
   handleSubmit: (values, actions) => {
     const queryString = `${qs.stringify(values, qsOptions)}`;

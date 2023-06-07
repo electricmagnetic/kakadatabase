@@ -1,24 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-import generateSummary from './helpers/generateSummary';
-import getPicture from './helpers/getPicture';
-import birdLink from './helpers/birdLink';
+import generateSummary from "./helpers/generateSummary";
+import getPicture from "./helpers/getPicture";
+import birdLink from "./helpers/birdLink";
 
 /**
   Presents a nicely formatted card for a given bird.
  */
 const BirdCard = ({ bird, ...others }) => {
   const { className } = others;
-  const classNames = ['BirdCard'];
+  const classNames = ["BirdCard"];
   if (className) classNames.push(className);
 
   return (
-    <div className={classNames.join(' ')}>
+    <div className={classNames.join(" ")}>
       <div className="card card-dull">
         <Link to={birdLink(bird)}>
-          <img src={getPicture(bird)} alt={bird.label} className="card-img-top" />
+          <img
+            src={getPicture(bird)}
+            alt={bird.label}
+            className="card-img-top"
+          />
         </Link>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">

@@ -1,26 +1,31 @@
-import React, { useState } from 'react';
-import { Typeahead } from 'react-bootstrap-typeahead';
-import { useQueryParam, JsonParam, withDefault } from 'use-query-params';
+import React, { useState } from "react";
+import { Typeahead } from "react-bootstrap-typeahead";
+import { useQueryParam, JsonParam, withDefault } from "use-query-params";
 
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-import { processBirds, getCriteria, filterBirds } from './search/helpers';
+import "react-bootstrap-typeahead/css/Typeahead.css";
+import { processBirds, getCriteria, filterBirds } from "./search/helpers";
 import {
   generateTypeaheadOptions,
   generateTypeaheadToken,
   generateTypeaheadMenuItemChildren,
-} from './search/typeahead';
+} from "./search/typeahead";
 
-import Bird from './Bird';
+import Bird from "./Bird";
 
-import './BirdSearch.scss';
+import "./BirdSearch.scss";
 
 const BirdSearch = ({ options, processedBirds, ...others }) => {
-  const [selected, setSelected] = useQueryParam('selected', withDefault(JsonParam, []));
+  const [selected, setSelected] = useQueryParam(
+    "selected",
+    withDefault(JsonParam, [])
+  );
   const filteredBirds =
-    selected.length > 0 ? filterBirds(processedBirds, selected) : processedBirds;
+    selected.length > 0
+      ? filterBirds(processedBirds, selected)
+      : processedBirds;
 
   // Intercept props passed to bird and replace type 'search' with type 'card'
-  const birdProps = Object.assign({}, others, { type: 'card' });
+  const birdProps = Object.assign({}, others, { type: "card" });
 
   return (
     <div className="BirdSearch">
@@ -28,7 +33,9 @@ const BirdSearch = ({ options, processedBirds, ...others }) => {
         <Typeahead
           className="BirdTypeahead mb-3"
           options={options}
-          shouldSelectHint={(shouldSelect, e) => e.keyCode === 13 || shouldSelect}
+          shouldSelectHint={(shouldSelect, e) =>
+            e.keyCode === 13 || shouldSelect
+          }
           highlightOnlyResult
           name="bird"
           placeholder="Type band symbol, colour, name or primary (metal) band"
@@ -38,16 +45,18 @@ const BirdSearch = ({ options, processedBirds, ...others }) => {
           paginationText="Display more…"
           multiple
           selected={selected}
-          onChange={selected => {
+          onChange={(selected) => {
             setSelected(selected);
           }}
-          labelKey={option => option.label}
+          labelKey={(option) => option.label}
           renderToken={(...props) => generateTypeaheadToken(...props)}
-          renderMenuItemChildren={(...props) => generateTypeaheadMenuItemChildren(...props)}
+          renderMenuItemChildren={(...props) =>
+            generateTypeaheadMenuItemChildren(...props)
+          }
         />
       </section>
       <div className="row">
-        {filteredBirds.map(bird => (
+        {filteredBirds.map((bird) => (
           <Bird bird={bird} key={bird.id} {...birdProps} />
         ))}
       </div>
@@ -60,9 +69,12 @@ const BirdSearchContainer = ({ birds, ...others }) => {
   const [processedBirds, setProcessedBirds] = useState([]);
 
   if (processedBirds.length === 0) setProcessedBirds(processBirds(birds));
-  if (options.length === 0) setOptions(generateTypeaheadOptions(getCriteria(processedBirds)));
+  if (options.length === 0)
+    setOptions(generateTypeaheadOptions(getCriteria(processedBirds)));
 
-  return <BirdSearch processedBirds={processedBirds} options={options} {...others} />;
+  return (
+    <BirdSearch processedBirds={processedBirds} options={options} {...others} />
+  );
 };
 
 export default BirdSearchContainer;

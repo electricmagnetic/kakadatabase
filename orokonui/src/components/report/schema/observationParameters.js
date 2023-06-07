@@ -8,7 +8,7 @@ export const maximumBirdObservations = 40;
   */
 export const qsOptions = {
   encode: false,
-  arrayFormat: 'brackets',
+  arrayFormat: "brackets",
   ignoreQueryPrefix: true,
   addQueryPrefix: true,
   allowDots: true,

@@ -1,16 +1,17 @@
-import * as yup from 'yup';
-import { maximumBirdObservations } from './observationParameters';
+import * as yup from "yup";
+import { maximumBirdObservations } from "./observationParameters";
 
-const requiredMessage = 'This field is required.';
-const notNumber = 'This field must be a number.';
-const emailInvalid = 'Invalid email address.';
-const formatInvalid = 'Date format invalid, please adjust.';
-const minDateInvalid = 'Date too old, please adjust.';
-const maxDateInvalid = 'Date must be today or earlier.';
-const maxBirdObservationMessage = 'You have reached the maximum of birds permitted.';
-const invalidLongitude = 'Longitude must be between -180 and 180.';
-const invalidLatitude = 'Latitude must be between -90 and 90.';
-const invalidNumber = 'You must have seen at least one bird.';
+const requiredMessage = "This field is required.";
+const notNumber = "This field must be a number.";
+const emailInvalid = "Invalid email address.";
+const formatInvalid = "Date format invalid, please adjust.";
+const minDateInvalid = "Date too old, please adjust.";
+const maxDateInvalid = "Date must be today or earlier.";
+const maxBirdObservationMessage =
+  "You have reached the maximum of birds permitted.";
+const invalidLongitude = "Longitude must be between -180 and 180.";
+const invalidLatitude = "Latitude must be between -90 and 90.";
+const invalidNumber = "You must have seen at least one bird.";
 
 /**
   Specifies validation of contributor.
@@ -18,10 +19,7 @@ const invalidNumber = 'You must have seen at least one bird.';
 export const contributorValidationSchema = yup
   .object({
     name: yup.string().required(requiredMessage),
-    email: yup
-      .string()
-      .email(emailInvalid)
-      .required(requiredMessage),
+    email: yup.string().email(emailInvalid).required(requiredMessage),
     activity: yup.string(),
     heard: yup.string(),
   })
@@ -66,13 +64,7 @@ export const fullValidationSchema = yup
         .required(),
       coordinates: yup
         .array()
-        .of(
-          yup
-            .number()
-            .min(-180)
-            .max(180)
-            .typeError(notNumber)
-        )
+        .of(yup.number().min(-180).max(180).typeError(notNumber))
         .required(),
     }),
     precision: yup.number().typeError(notNumber),
@@ -99,7 +91,7 @@ export const initialValidationSchema = yup
   .object({
     date_sighted: yup
       .date()
-      .min(new Date('1970-01-01').toString(), minDateInvalid)
+      .min(new Date("1970-01-01").toString(), minDateInvalid)
       .max(new Date().toString(), maxDateInvalid)
       .typeError(formatInvalid)
       .required(requiredMessage),

@@ -1,8 +1,8 @@
-import React from 'react';
-import { getIn } from 'formik';
-import classnames from 'classnames';
+import React from "react";
+import { getIn } from "formik";
+import classnames from "classnames";
 
-import TimeSelector from './TimeSelector';
+import TimeSelector from "./TimeSelector";
 
 /**
   Principal method for rendering all fields. Handles logic for displaying checkboxes, select field
@@ -10,7 +10,7 @@ import TimeSelector from './TimeSelector';
 
   Also handles `error` messages (from yup) and `status` messages (from back-end).
 */
-const RenderField = props => {
+const RenderField = (props) => {
   const {
     field,
     form,
@@ -36,39 +36,41 @@ const RenderField = props => {
   const isInvalid = (touched && error) || status ? true : false;
 
   // Adjusts classes on form control depending on type, validity and readOnly status
-  const formControlClasses = (type => {
-    const baseClasses = classnames(className, { 'is-invalid': isInvalid });
+  const formControlClasses = ((type) => {
+    const baseClasses = classnames(className, { "is-invalid": isInvalid });
     switch (type) {
-      case 'checkbox':
-        return classnames(baseClasses, 'form-check-input');
-      case 'choice':
-      case 'time':
-        return classnames(baseClasses, 'custom-select');
+      case "checkbox":
+        return classnames(baseClasses, "form-check-input");
+      case "choice":
+      case "time":
+        return classnames(baseClasses, "custom-select");
       default:
         return classnames(
           baseClasses,
-          { 'form-control': !props.readOnly },
-          { 'form-control-plaintext': props.readOnly }
+          { "form-control": !props.readOnly },
+          { "form-control-plaintext": props.readOnly }
         );
     }
   })(type);
 
   // Adjusts classes on label depending on type and hideLabel status
-  const formLabelClasses = (type => {
+  const formLabelClasses = ((type) => {
     const baseClasses = classnames({
-      'sr-only': hideLabel,
+      "sr-only": hideLabel,
     });
     switch (type) {
-      case 'checkbox':
-        return classnames(baseClasses, 'form-check-label');
+      case "checkbox":
+        return classnames(baseClasses, "form-check-label");
       default:
-        return classnames(baseClasses, 'control-label');
+        return classnames(baseClasses, "control-label");
     }
   })(type);
 
   // Only if help text provided, create appropriate aria attribute
   const helpTextElementId = `${field.name}-helpText`;
-  const helpTextAttribute = helpText ? { 'aria-describedby': helpTextElementId } : null;
+  const helpTextAttribute = helpText
+    ? { "aria-describedby": helpTextElementId }
+    : null;
 
   // Creates input attributes to be applied
   const inputAttributes = {
@@ -80,25 +82,25 @@ const RenderField = props => {
   };
 
   // Creates field element based on field type
-  const fieldElement = (type => {
+  const fieldElement = ((type) => {
     switch (type) {
-      case 'time':
+      case "time":
         return <TimeSelector {...inputAttributes} />;
-      case 'choice':
+      case "choice":
         return (
           <select {...inputAttributes}>
             {/* Add blank to compulsory fields (requiring the user to make a selection) */}
-            {addBlank && <option default value={''} />}
-            {choices.map(option => (
+            {addBlank && <option default value={""} />}
+            {choices.map((option) => (
               <option value={option.value} key={option.value}>
                 {option.display_name}
               </option>
             ))}
           </select>
         );
-      case 'textarea':
+      case "textarea":
         return <textarea {...inputAttributes} />;
-      case 'checkbox':
+      case "checkbox":
         return <input {...inputAttributes} type={type} checked={value} />;
       default:
         return <input {...inputAttributes} type={type} />;
@@ -120,7 +122,7 @@ const RenderField = props => {
   ) : null;
 
   // Creates error element
-  const errorClass = tooltip ? 'invalid-tooltip' : 'invalid-feedback d-inline';
+  const errorClass = tooltip ? "invalid-tooltip" : "invalid-feedback d-inline";
   const errorElement = (
     <>
       {/* `d-inline` is used to force visibility due to some incompatibilities with BS4 */}
@@ -130,9 +132,9 @@ const RenderField = props => {
   );
 
   // Creates element grouping above elements, with special ordering for check boxes
-  const groupElement = (type => {
+  const groupElement = ((type) => {
     switch (type) {
-      case 'checkbox':
+      case "checkbox":
         return (
           <div className="form-check">
             {fieldElement}
@@ -163,7 +165,7 @@ RenderField.defaultProps = {
   disabled: false,
   hideLabel: false,
   tooltip: false,
-  className: '',
+  className: "",
 };
 
 export default RenderField;

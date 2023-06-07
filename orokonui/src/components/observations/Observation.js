@@ -1,12 +1,12 @@
-import React from 'react';
-import useSWR from 'swr';
-import PropTypes from 'prop-types';
+import React from "react";
+import useSWR from "swr";
+import PropTypes from "prop-types";
 
-import ObservationPage from './Observation/ObservationPage';
-import ObservationCard from './Observation/ObservationCard';
+import ObservationPage from "./Observation/ObservationPage";
+import ObservationCard from "./Observation/ObservationCard";
 
-import Loader from '../helpers/Loader';
-import Error from '../helpers/Error';
+import Loader from "../helpers/Loader";
+import Error from "../helpers/Error";
 
 const API_URL = `${process.env.REACT_APP_API_BASE}/observations/`;
 
@@ -17,7 +17,7 @@ const RenderObservation = ({ observation, type, ...others }) => {
   if (!observation) return <Error message="Invalid observation" />;
 
   switch (type) {
-    case 'card':
+    case "card":
       return <ObservationCard observation={observation} {...others} />;
     default:
       return <ObservationPage observation={observation} {...others} />;
@@ -30,7 +30,9 @@ const RenderObservation = ({ observation, type, ...others }) => {
   - Fetches a observation using the given id and renders as a specified type
   */
 const Observation = ({ id, observation, ...others }) => {
-  const { data, error, isValidating } = useSWR(!observation ? `${API_URL}${id}/` : null);
+  const { data, error, isValidating } = useSWR(
+    !observation ? `${API_URL}${id}/` : null
+  );
 
   if (observation) {
     return <RenderObservation observation={observation} {...others} />;
@@ -50,7 +52,7 @@ Observation.propTypes = {
 };
 
 Observation.defaultProps = {
-  type: 'page',
+  type: "page",
 };
 
 export default Observation;

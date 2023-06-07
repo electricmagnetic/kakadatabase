@@ -1,20 +1,26 @@
-import React, { Component } from 'react';
-import Helmet from 'react-helmet';
-import { connect } from 'react-refetch';
-import { Form, withFormik } from 'formik';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import Helmet from "react-helmet";
+import { connect } from "react-refetch";
+import { Form, withFormik } from "formik";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import Error from '../../helpers/Error';
+import Error from "../../helpers/Error";
 
-import Messages from '../helpers/Messages';
-import BirdsFieldset from './fieldsets/BirdsFieldset';
-import ContributorFieldset from './fieldsets/ContributorFieldset';
-import FurtherInformationFieldset from './fieldsets/FurtherInformationFieldset';
-import SubmitFieldset from './fieldsets/SubmitFieldset';
+import Messages from "../helpers/Messages";
+import BirdsFieldset from "./fieldsets/BirdsFieldset";
+import ContributorFieldset from "./fieldsets/ContributorFieldset";
+import FurtherInformationFieldset from "./fieldsets/FurtherInformationFieldset";
+import SubmitFieldset from "./fieldsets/SubmitFieldset";
 
-import { initialFullValues, initialBirdObservationValues } from '../schema/initialValues';
-import { fullValidationSchema, initialValidationSchema } from '../schema/validationSchemas';
+import {
+  initialFullValues,
+  initialBirdObservationValues,
+} from "../schema/initialValues";
+import {
+  fullValidationSchema,
+  initialValidationSchema,
+} from "../schema/validationSchemas";
 
 const API_URL = `${process.env.REACT_APP_API_BASE}/report/`;
 
@@ -28,7 +34,8 @@ class FormComponent extends Component {
       const { postSubmissionResponse } = this.props;
       const isSettled =
         postSubmissionResponse.settled &&
-        prevProps.postSubmissionResponse.settled !== postSubmissionResponse.settled;
+        prevProps.postSubmissionResponse.settled !==
+          postSubmissionResponse.settled;
 
       // Conclude isSubmitting if either rejected or fulfilled
       if (
@@ -41,7 +48,9 @@ class FormComponent extends Component {
       if (postSubmissionResponse.rejected && isSettled)
         this.props.setStatus(postSubmissionResponse.reason.cause);
       else if (postSubmissionResponse.fulfilled && isSettled)
-        this.props.history.push(`/report/success/${postSubmissionResponse.value.id}`);
+        this.props.history.push(
+          `/report/success/${postSubmissionResponse.value.id}`
+        );
     }
   }
 
@@ -73,17 +82,20 @@ class FormComponent extends Component {
   Transforms initial values for the form, based on values provided via the queryString.
   Casts values as per schema (e.g. "2" -> 2), adds requisite number of birds (if not 'distant' or 'heard'), and tranforms coordinates.
  */
-const computeInitialValues = props => {
+const computeInitialValues = (props) => {
   const { queryString } = props;
   const initialDetailsValues = initialValidationSchema.cast(queryString);
 
   return Object.assign({}, initialFullValues, initialDetailsValues, {
     point_location: {
-      type: 'Point',
-      coordinates: [initialDetailsValues.longitude, initialDetailsValues.latitude],
+      type: "Point",
+      coordinates: [
+        initialDetailsValues.longitude,
+        initialDetailsValues.latitude,
+      ],
     },
     birds:
-      initialDetailsValues.observation_type === 'sighted'
+      initialDetailsValues.observation_type === "sighted"
         ? Array(initialDetailsValues.number).fill(initialBirdObservationValues)
         : [],
     date_sighted: queryString.date_sighted, // expected as string object, not Date
@@ -94,7 +106,7 @@ const computeInitialValues = props => {
   Primary submission form, using formik, yup and react-refetch
 */
 const FinalDetailsForm = withFormik({
-  mapPropsToValues: props => computeInitialValues(props),
+  mapPropsToValues: (props) => computeInitialValues(props),
   validationSchema: fullValidationSchema,
   handleSubmit: (values, actions) => {
     actions.props.postSubmission(Object.assign({}, values));
@@ -107,11 +119,11 @@ FinalDetailsForm.propTypes = {
 };
 
 export default withRouter(
-  connect(props => ({
-    postSubmission: values => ({
+  connect((props) => ({
+    postSubmission: (values) => ({
       postSubmissionResponse: {
         url: API_URL,
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(values),
       },
     }),

@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import useSWR from 'swr';
+import React from "react";
+import PropTypes from "prop-types";
+import useSWR from "swr";
 
-import Observation from './Observation';
-import ObservationsMap from './Observation/ObservationsMap';
+import Observation from "./Observation";
+import ObservationsMap from "./Observation/ObservationsMap";
 
-import Loader from '../helpers/Loader';
-import Error from '../helpers/Error';
+import Loader from "../helpers/Loader";
+import Error from "../helpers/Error";
 
 const API_URL = `${process.env.REACT_APP_API_BASE}/observations/`;
 
@@ -27,8 +27,9 @@ const Observations = ({ queryString, ...others }) => {
     if (observations.length === 0) return null;
 
     // Intercept type 'map', as this needs rendering as a group on a single map
-    if (others.type === 'map') return <ObservationsMap observations={observations} {...others} />;
-    return observations.map(observation => (
+    if (others.type === "map")
+      return <ObservationsMap observations={observations} {...others} />;
+    return observations.map((observation) => (
       <Observation observation={observation} key={observation.id} {...others} />
     ));
   } else return null;
@@ -39,7 +40,7 @@ Observations.propTypes = {
 };
 
 Observations.defaultProps = {
-  queryString: '',
+  queryString: "",
 };
 
 export default Observations;

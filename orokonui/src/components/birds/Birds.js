@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import useSWR from 'swr';
+import React from "react";
+import PropTypes from "prop-types";
+import useSWR from "swr";
 
-import Bird from './Bird';
-import BirdSearch from './BirdSearch';
+import Bird from "./Bird";
+import BirdSearch from "./BirdSearch";
 
-import Loader from '../helpers/Loader';
-import Error from '../helpers/Error';
+import Loader from "../helpers/Loader";
+import Error from "../helpers/Error";
 
 const API_URL = `${process.env.REACT_APP_API_BASE}/birds/`;
 
@@ -27,9 +27,10 @@ const Birds = ({ queryString, ...others }) => {
     if (birds.length === 0) return null;
 
     // Intercept type 'search', as this needs rendering as a group on a single map
-    if (others.type === 'search') return <BirdSearch birds={birds} {...others} />;
+    if (others.type === "search")
+      return <BirdSearch birds={birds} {...others} />;
 
-    return birds.map(bird => <Bird bird={bird} key={bird.id} {...others} />);
+    return birds.map((bird) => <Bird bird={bird} key={bird.id} {...others} />);
   } else return null;
 };
 
@@ -39,8 +40,8 @@ Birds.propTypes = {
 };
 
 Birds.defaultProps = {
-  type: 'card',
-  queryString: '',
+  type: "card",
+  queryString: "",
 };
 
 export default Birds;

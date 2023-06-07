@@ -1,23 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import React from "react";
+import PropTypes from "prop-types";
+import Helmet from "react-helmet";
 
-import generateSummary from './helpers/generateSummary';
-import getPicture from './helpers/getPicture';
+import generateSummary from "./helpers/generateSummary";
+import getPicture from "./helpers/getPicture";
 
-import Banner from '../../presentation/Banner';
-import BirdObservations from '../../observations/BirdObservations';
+import Banner from "../../presentation/Banner";
+import BirdObservations from "../../observations/BirdObservations";
 
-import Error from '../../helpers/Error';
+import Error from "../../helpers/Error";
 
-import './BirdPage.scss';
+import "./BirdPage.scss";
 
 /**
   Presents a nicely formatted page for a given bird.
  */
 const BirdPage = ({ bird }) => {
   const { profile } = bird;
-  const hasObservations = BirdObservations({ queryString: `?bird=${bird.id}` }) ? true : false;
+  const hasObservations = BirdObservations({ queryString: `?bird=${bird.id}` })
+    ? true
+    : false;
 
   return (
     <div className="BirdPage">
@@ -33,7 +35,7 @@ const BirdPage = ({ bird }) => {
           <div className="col-md-4 order-md-9 mb-5">
             <figure>
               <img
-                src={getPicture(bird, 'large')}
+                src={getPicture(bird, "large")}
                 alt={bird.label}
                 className="img-fluid img-thumbnail"
               />
@@ -64,7 +66,11 @@ const BirdPage = ({ bird }) => {
                     <dt>Sponsor</dt>
                     <dd>
                       {profile.sponsor_website ? (
-                        <a href={profile.sponsor_website} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={profile.sponsor_website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           {profile.sponsor_name}
                         </a>
                       ) : (

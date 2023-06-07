@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Field, FieldArray } from 'formik';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Field, FieldArray } from "formik";
 
-import FormatDateTime from '../../../helpers/FormatDateTime';
-import RenderField from '../../helpers/RenderField';
+import FormatDateTime from "../../../helpers/FormatDateTime";
+import RenderField from "../../helpers/RenderField";
 
-import { initialBirdObservationValues } from '../../schema/initialValues';
+import { initialBirdObservationValues } from "../../schema/initialValues";
 
 class RenderBirdObservation extends Component {
   render() {
@@ -82,7 +82,11 @@ class RenderBirdObservations extends Component {
           {values.birds &&
             values.birds.length > 0 &&
             values.birds.map((bird, index) => (
-              <RenderBirdObservation index={index} {...this.props} key={index} />
+              <RenderBirdObservation
+                index={index}
+                {...this.props}
+                key={index}
+              />
             ))}
         </div>
       </div>
@@ -92,7 +96,7 @@ class RenderBirdObservations extends Component {
 
 const BirdsFieldset = ({ fieldOptions, values }) => {
   switch (values.observation_type) {
-    case 'sighted':
+    case "sighted":
       return (
         <fieldset className="mb-3">
           <legend className="sr-only">Birds</legend>
@@ -106,7 +110,7 @@ const BirdsFieldset = ({ fieldOptions, values }) => {
           <FieldArray
             initialValues={initialBirdObservationValues}
             name="birds"
-            render={arrayHelpers => (
+            render={(arrayHelpers) => (
               <RenderBirdObservations
                 fieldOptions={fieldOptions.birds.child.children}
                 values={values}
@@ -121,7 +125,7 @@ const BirdsFieldset = ({ fieldOptions, values }) => {
         <section>
           <p className="lead">
             <i className="fa-fw fas fa-feather-alt mr-2" />
-            {values.number} kākā ({values.observation_type}) on{' '}
+            {values.number} kākā ({values.observation_type}) on{" "}
             <FormatDateTime format="longDateTime">
               {values.date_sighted} {values.time_sighted}
             </FormatDateTime>
