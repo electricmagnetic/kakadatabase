@@ -7,7 +7,7 @@ Structure
 ---------
 
 * React (CRA)
-  * `frontend/` Main citizen science front-end
+  * `orokonui/` Main citizen science front-end (adapted for Orokonui Ecosanctuary)
 * Back-end
   * `backend/` Django-based back-end
 
