@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "kakadatabase-nz"
+  },
+  "targets": {
+    "kakadatabase-nz": {
+      "hosting": {
+        "kakadatabase-orokonui-nz": [
+          "kakadatabase-orokonui-nz"
+        ]
+      }
+    }
+  }
+}

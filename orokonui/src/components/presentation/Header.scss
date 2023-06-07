@@ -1,0 +1,36 @@
+@import 'assets/css/_variables';
+
+header {
+  &.on-home {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    li.nav-item {
+      background-color: $secondary;
+    }
+
+    .navbar-brand {
+      color: $white;
+    }
+
+    @include media-breakpoint-down(md) {
+      .navbar-collapse {
+        background-color: $secondary;
+        padding: $spacer;
+      }
+      .navbar-toggler {
+        background-color: $secondary;
+      }
+    }
+  }
+
+  nav {
+    .navbar-brand {
+      font-family: $headings-font-family;
+      img {
+        height: 56px;
+      }
+    }
+  }
+}

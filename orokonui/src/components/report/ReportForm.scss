@@ -1,0 +1,33 @@
+@import 'assets/css/_variables';
+
+.ReportForm {
+  .form-sentence {
+    .form-number {
+      max-width: 8rem;
+    }
+
+    .form-word,
+    .control-label {
+      display: inline-block;
+      font-size: $font-size-lg;
+      line-height: 2;
+      margin-right: $spacer/2;
+    }
+
+    .form-group {
+      position: relative;
+      margin-right: $spacer/2;
+    }
+
+    .form-control,
+    .custom-select {
+      border-radius: 0;
+      border-width: 1px;
+      border-bottom: 2px solid $body-color;
+    }
+
+    .invalid-tooltip {
+      z-index: 1000;
+    }
+  }
+}

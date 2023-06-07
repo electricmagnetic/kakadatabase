@@ -1,0 +1,8 @@
+@import 'assets/css/_variables';
+
+.Error {
+  &.alert-faded {
+    background-color: rgba($brown-faded, 0.5);
+    border-color: $brown-faded;
+  }
+}

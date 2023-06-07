@@ -1,0 +1,20 @@
+const postFetcher = async url => {
+  const result = await fetch(url, {
+      method: 'post',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(Object.assign({}, values))
+    });
+
+  if (!result.ok) {
+    const error = new Error('An error occurred while posting the data.');
+
+    error.info = await result.json();
+    error.status = result.status;
+    throw error;
+  }
+  return result.json();
+};
+
+const { data, error } = useSWR(API_URL, postFetcher);

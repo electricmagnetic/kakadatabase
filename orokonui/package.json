@@ -1,0 +1,74 @@
+{
+  "name": "kakadatabase-front",
+  "version": "0.13.1",
+  "private": true,
+  "homepage": "https://kakadatabase.orokonui.nz",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@sentry/react": "^5.30.0",
+    "@sentry/tracing": "^5.30.0",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.0",
+    "bootstrap": "^4.5.3",
+    "classnames": "2.3.2",
+    "core-js": "^3.26.1",
+    "formik": "2.2.9",
+    "history": "4.9.0",
+    "jquery": "3.6.1",
+    "leaflet": "1.9.3",
+    "moment": "2.29.4",
+    "moo": "0.5.2",
+    "prop-types": "15.8.1",
+    "qs": "6.11.0",
+    "query-string": "^6.14.0",
+    "react": "^16.14.0",
+    "react-app-polyfill": "^1.0.6",
+    "react-bootstrap-typeahead": "^5.1.4",
+    "react-dom": "^16.14.0",
+    "react-ga": "3.3.1",
+    "react-helmet": "^6.1.0",
+    "react-leaflet": "^2.8.0",
+    "react-moment": "1.1.2",
+    "react-refetch": "^3.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.1",
+    "react-truncate": "^2.4.0",
+    "swr": "^0.4.0",
+    "use-query-params": "^1.1.9",
+    "yup": "0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && firebase deploy"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "devDependencies": {
+    "husky": "^3.1.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.2",
+    "sass": "1.56.1"
+  }
+}
